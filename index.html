@@ -2,83 +2,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Stone Knight's News Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7fa;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        .card {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.2em;
-            color: #0056b3;
-        }
-        .card a {
-            display: block;
-            margin-top: 10px;
-            color: #0077cc;
-            text-decoration: none;
-        }
-        .card a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #777;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stone Knight's News Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #e1bee7);
+      color: #333;
+      transition: background 0.5s ease;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: #6a1b9a;
+    }
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .card ul li {
+      margin: 0.5rem 0;
+    }
+    .card ul li a {
+      text-decoration: none;
+      color: #00796b;
+      transition: color 0.3s ease;
+    }
+    .card ul li a:hover {
+      color: #004d40;
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
+  <header>
     <h1>Stone Knight's News Dashboard</h1>
-    <div class="grid">
-        <div class="card">
-            <h2>Canadian News</h2>
-            <a href="https://www.cbc.ca/news" target="_blank">CBC Top Stories</a>
-            <a href="https://thenarwhal.ca" target="_blank">The Narwhal</a>
-            <a href="https://thetyee.ca" target="_blank">The Tyee (Politics)</a>
-        </div>
-        <div class="card">
-            <h2>Global News</h2>
-            <a href="https://www.hrw.org" target="_blank">Human Rights Watch</a>
-            <a href="https://www.bbc.com/news" target="_blank">BBC International</a>
-        </div>
-        <div class="card">
-            <h2>Science & Environment</h2>
-            <a href="https://www.scientificamerican.com" target="_blank">Scientific American</a>
-        </div>
-        <div class="card">
-            <h2>Educational Resources</h2>
-            <a href="https://humanrights.ca/education-resources/" target="_blank">CMHR Education</a>
-            <a href="https://evidencefordemocracy.ca" target="_blank">Evidence for Democracy</a>
-            <a href="https://theconversation.com/ca" target="_blank">The Conversation Canada</a>
-        </div>
+    <p>Stay informed with trusted sources across Canada and the globe</p>
+  </header>
+  <main class="container">
+    <div class="card">
+      <h2>Canadian News</h2>
+      <ul>
+        <li><a href="https://www.cbc.ca/news" target="_blank">CBC Top Stories</a></li>
+        <li><a href="https://thenarwhal.ca" target="_blank">The Narwhal</a></li>
+        <li><a href="https://thetyee.ca" target="_blank">The Tyee</a></li>
+      </ul>
     </div>
-    <footer>
-        <p>Curated by Stone Knight — Stay informed, stay empowered.</p>
-    </footer>
+    <div class="card">
+      <h2>Global News</h2>
+      <ul>
+        <li><a href="https://www.hrw.org" target="_blank">Human Rights Watch</a></li>
+        <li><a href="https://www.bbc.com/news" target="_blank">BBC International</a></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Science & Environment</h2>
+      <ul>
+        <li><a href="https://www.scientificamerican.com" target="_blank">Scientific American</a></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Educational Resources</h2>
+      <ul>
+        <li><a href="https://humanrights.ca/education-resources/" target="_blank">CMHR Education</a></li>
+        <li><a href="https://evidencefordemocracy.ca" target="_blank">Evidence for Democracy</a></li>
+        <li><a href="https://theconversation.com/ca" target="_blank">The Conversation Canada</a></li>
+      </ul>
+    </div>
+  </main>
+  <footer>
+    &copy; 2024 Stone Knight | Built with ❤️ for informed citizenship
+  </footer>
 </body>
 </html>
