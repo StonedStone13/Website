@@ -1,51 +1,87 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>News Dashboard</title>
+  <title>Stone Knight's News Dashboard</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f7fa;
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      color: #333;
     }
-    h1 {
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 1rem;
       text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
     }
-    .section {
-      background: white;
-      padding: 15px;
-      margin: 10px auto;
-      max-width: 600px;
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .card {
+      background-color: white;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      transition: transform 0.2s ease;
     }
-    .section a {
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+    .card h2 span {
+      margin-right: 0.5rem;
+      font-size: 1.5rem;
+    }
+    .card a {
       display: block;
-      margin: 5px 0;
-      color: #0077cc;
+      margin-top: 0.5rem;
+      color: #2980b9;
       text-decoration: none;
+      transition: color 0.2s ease;
     }
-    .section a:hover {
-      text-decoration: underline;
+    .card a:hover {
+      color: #1abc9c;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #ecf0f1;
+      font-size: 0.9rem;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <h1>News Dashboard</h1>
-  <div class="section">
-    <h2>CBC Top Stories</h2>
-    <a href="https://www.cbc.ca/news" target="_blank">Visit CBC News</a>
+  <header>📰 Stone Knight's News Dashboard</header>
+  <div class="container">
+    <div class="card">
+      <h2><span>🇨🇦</span>CBC Top Stories</h2>
+      <a href="https://www.cbc.ca/news" target="_blank">Visit CBC News</a>
+    </div>
+    <div class="card">
+      <h2><span>🌱</span>The Narwhal</h2>
+      <a href="https://thenarwhal.ca" target="_blank">Visit The Narwhal</a>
+    </div>
+    <div class="card">
+      <h2><span>🛡️</span>Human Rights Watch</h2>
+      <a href="https://www.hrw.org" target="_blank">Visit Human Rights Watch</a>
+    </div>
   </div>
-  <div class="section">
-    <h2>The Narwhal</h2>
-    <a href="https://thenarwhal.ca" target="_blank">Visit The Narwhal</a>
-  </div>
-  <div class="section">
-    <h2>Human Rights Watch</h2>
-    <a href="https://www.hrw.org" target="_blank">Visit Human Rights Watch</a>
-  </div>
+  <footer>Dashboard curated for global and Canadian news awareness. Stay informed!</footer>
 </body>
 </html>
