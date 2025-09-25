@@ -1,78 +1,85 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Custom News Dashboard</title>
+  <title>Stone Knight's News Dashboard</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #f4f4f4;
       margin: 0;
-      padding: 0;
+      padding: 20px;
     }
-    header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 1rem;
+    h1 {
       text-align: center;
     }
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 1rem;
-    }
-    .card {
-      background: white;
+    .feed-section {
+      background: #fff;
+      margin: 20px auto;
+      padding: 20px;
       border-radius: 8px;
+      max-width: 800px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      margin: 1rem;
-      padding: 1rem;
-      width: 350px;
-      box-sizing: border-box;
     }
-    .card h2 {
-      font-size: 1.2rem;
+    .feed-section h2 {
       margin-top: 0;
     }
-    iframe {
-      width: 100%;
-      height: 400px;
-      border: none;
+    .feed-item {
+      margin-bottom: 10px;
     }
-    details {
-      margin: 1rem;
+    .feed-item a {
+      text-decoration: none;
+      color: #0077cc;
+    }
+    .feed-item a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Live News Dashboard</h1>
-  </header>
-  <div class="container">
-    <div class="card">
-      <h2>🌍 Human Rights Watch</h2>
-      <iframe src="https://rss.app/embed/v1/wall/1vZKZ5Y9zv3zvZ9y"></iframe>
-    </div>
-    <div class="card">
-      <h2>🇨🇦 CBC Top Stories</h2>
-      <iframe src="https://rss.app/embed/v1/wall/1vZKZ5Y9zv3zvZ9z"></iframe>
-    </div>
-    <div class="card">
-      <h2>🌱 The Narwhal (Environment)</h2>
-      <iframe src="https://rss.app/embed/v1/wall/1vZKZ5Y9zv3zvZ9x"></iframe>
-    </div>
+  <h1>Stone Knight's News Dashboard</h1>
+
+  <div class="feed-section" id="cbc">
+    <h2>CBC Top Stories</h2>
+    <div id="cbc-feed"></div>
   </div>
-  <details>
-    <summary><strong>📚 Educational Resources</strong></summary>
-    <ul>
-      <li><a href="https://humanrights.ca/education-resources/" target="_blank">Canadian Museum for Human Rights</a></li>
-      <li><a href="https://evidencefordemocracy.ca" target="_blank">Evidence for Democracy</a></li>
-      <li><a href="https://theconversation.com/ca" target="_blank">The Conversation Canada</a></li>
-      <li><a href="https://www.nationalobserver.com" target="_blank">Canada’s National Observer</a></li>
-    </ul>
-  </details>
+
+  <div class="feed-section" id="narwhal">
+    <h2>The Narwhal</h2>
+    <div id="narwhal-feed"></div>
+  </div>
+
+  <div class="feed-section" id="hrw">
+    <h2>Human Rights Watch</h2>
+    <div id="hrw-feed"></div>
+  </div>
+
+  <script>
+    function loadFeed(containerId, rssUrl) {
+      fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(rssUrl))
+        .then(response => response.json())
+        .then(data => {
+          const container = document.getElementById(containerId);
+          if (data.items) {
+            data.items.slice(0, 5).forEach(item => {
+              const div = document.createElement("div");
+              div.className = "feed-item";
+              div.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+              container.appendChild(div);
+            });
+          } else {
+            container.innerHTML = "<p>Unable to load feed.</p>";
+          }
+        })
+        .catch(error => {
+          document.getElementById(containerId).innerHTML = "<p>Error loading feed.</p>";
+        });
+    }
+
+    loadFeed("cbc-feed", "https://rss.cbc.ca/lineup/topstories.xml");
+    loadFeed("narwhal-feed", "https://thenarwhal.ca/feed/");
+    loadFeed("hrw-feed", "https://www.hrw.org/rss/news");
+  </script>
 </body>
 </html>
