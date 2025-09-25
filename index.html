@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stone Knight's News Dashboard</title>
+  <title>News Dashboard</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,72 +14,38 @@
     h1 {
       text-align: center;
     }
-    .feed-section {
-      background: #fff;
-      margin: 20px auto;
-      padding: 20px;
+    .section {
+      background: white;
+      padding: 15px;
+      margin: 10px auto;
+      max-width: 600px;
       border-radius: 8px;
-      max-width: 800px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    .feed-section h2 {
-      margin-top: 0;
-    }
-    .feed-item {
-      margin-bottom: 10px;
-    }
-    .feed-item a {
-      text-decoration: none;
+    .section a {
+      display: block;
+      margin: 5px 0;
       color: #0077cc;
+      text-decoration: none;
     }
-    .feed-item a:hover {
+    .section a:hover {
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h1>Stone Knight's News Dashboard</h1>
-
-  <div class="feed-section" id="cbc">
+  <h1>News Dashboard</h1>
+  <div class="section">
     <h2>CBC Top Stories</h2>
-    <div id="cbc-feed"></div>
+    <a href="https://www.cbc.ca/news" target="_blank">Visit CBC News</a>
   </div>
-
-  <div class="feed-section" id="narwhal">
+  <div class="section">
     <h2>The Narwhal</h2>
-    <div id="narwhal-feed"></div>
+    <a href="https://thenarwhal.ca" target="_blank">Visit The Narwhal</a>
   </div>
-
-  <div class="feed-section" id="hrw">
+  <div class="section">
     <h2>Human Rights Watch</h2>
-    <div id="hrw-feed"></div>
+    <a href="https://www.hrw.org" target="_blank">Visit Human Rights Watch</a>
   </div>
-
-  <script>
-    function loadFeed(containerId, rssUrl) {
-      fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(rssUrl))
-        .then(response => response.json())
-        .then(data => {
-          const container = document.getElementById(containerId);
-          if (data.items) {
-            data.items.slice(0, 5).forEach(item => {
-              const div = document.createElement("div");
-              div.className = "feed-item";
-              div.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
-              container.appendChild(div);
-            });
-          } else {
-            container.innerHTML = "<p>Unable to load feed.</p>";
-          }
-        })
-        .catch(error => {
-          document.getElementById(containerId).innerHTML = "<p>Error loading feed.</p>";
-        });
-    }
-
-    loadFeed("cbc-feed", "https://rss.cbc.ca/lineup/topstories.xml");
-    loadFeed("narwhal-feed", "https://thenarwhal.ca/feed/");
-    loadFeed("hrw-feed", "https://www.hrw.org/rss/news");
-  </script>
 </body>
 </html>
