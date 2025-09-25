@@ -7,106 +7,105 @@
   <title>Stone Knight's News Dashboard</title>
   <style>
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #e0f7fa, #e1bee7);
+      background: linear-gradient(to right, #eef2f3, #8e9eab);
+      margin: 0;
+      padding: 20px;
       color: #333;
-      transition: background 0.5s ease;
     }
     header {
       text-align: center;
-      padding: 2rem;
-      background-color: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
     }
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
+    .quote-box {
+      background-color: #ffffffcc;
+      border-left: 5px solid #4a90e2;
+      padding: 15px;
+      margin: 0 auto 30px;
+      max-width: 600px;
+      font-style: italic;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
+    .category {
+      margin-bottom: 20px;
     }
-    .card {
-      background-color: white;
-      border-radius: 10px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .category h2 {
+      color: #4a90e2;
     }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    }
-    .card h2 {
-      margin-top: 0;
-      font-size: 1.5rem;
-      color: #6a1b9a;
-    }
-    .card ul {
-      list-style: none;
-      padding: 0;
-    }
-    .card ul li {
-      margin: 0.5rem 0;
-    }
-    .card ul li a {
+    .links a {
+      display: block;
+      margin: 5px 0;
+      color: #333;
       text-decoration: none;
-      color: #00796b;
-      transition: color 0.3s ease;
+      transition: color 0.3s;
     }
-    .card ul li a:hover {
-      color: #004d40;
-      text-decoration: underline;
+    .links a:hover {
+      color: #4a90e2;
     }
     footer {
       text-align: center;
-      padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.8);
-      font-size: 0.9rem;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #666;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Stone Knight's News Dashboard</h1>
-    <p>Stay informed with trusted sources across Canada and the globe</p>
+    <h1>Welcome to Stone Knight's News Dashboard</h1>
+    <div class="quote-box" id="daily-quote">Loading quote...</div>
   </header>
-  <main class="container">
-    <div class="card">
-      <h2>Canadian News</h2>
-      <ul>
-        <li><a href="https://www.cbc.ca/news" target="_blank">CBC Top Stories</a></li>
-        <li><a href="https://thenarwhal.ca" target="_blank">The Narwhal</a></li>
-        <li><a href="https://thetyee.ca" target="_blank">The Tyee</a></li>
-      </ul>
+
+  <div class="category">
+    <h2>Canadian News</h2>
+    <div class="links">
+      <a href="https://www.cbc.ca/news" target="_blank">CBC Top Stories</a>
+      <a href="https://thenarwhal.ca" target="_blank">The Narwhal</a>
+      <a href="https://thetyee.ca" target="_blank">The Tyee</a>
     </div>
-    <div class="card">
-      <h2>Global News</h2>
-      <ul>
-        <li><a href="https://www.hrw.org" target="_blank">Human Rights Watch</a></li>
-        <li><a href="https://www.bbc.com/news" target="_blank">BBC International</a></li>
-      </ul>
+  </div>
+
+  <div class="category">
+    <h2>Global News</h2>
+    <div class="links">
+      <a href="https://www.hrw.org" target="_blank">Human Rights Watch</a>
+      <a href="https://www.bbc.com/news" target="_blank">BBC International</a>
     </div>
-    <div class="card">
-      <h2>Science & Environment</h2>
-      <ul>
-        <li><a href="https://www.scientificamerican.com" target="_blank">Scientific American</a></li>
-      </ul>
+  </div>
+
+  <div class="category">
+    <h2>Science & Environment</h2>
+    <div class="links">
+      <a href="https://www.scientificamerican.com" target="_blank">Scientific American</a>
     </div>
-    <div class="card">
-      <h2>Educational Resources</h2>
-      <ul>
-        <li><a href="https://humanrights.ca/education-resources/" target="_blank">CMHR Education</a></li>
-        <li><a href="https://evidencefordemocracy.ca" target="_blank">Evidence for Democracy</a></li>
-        <li><a href="https://theconversation.com/ca" target="_blank">The Conversation Canada</a></li>
-      </ul>
+  </div>
+
+  <div class="category">
+    <h2>Educational Resources</h2>
+    <div class="links">
+      <a href="https://humanrights.ca/education-resources/" target="_blank">CMHR Education</a>
+      <a href="https://evidencefordemocracy.ca" target="_blank">Evidence for Democracy</a>
+      <a href="https://theconversation.com/ca" target="_blank">The Conversation Canada</a>
     </div>
-  </main>
+  </div>
+
   <footer>
-    &copy; 2024 Stone Knight | Built with ❤️ for informed citizenship
+    <p>Stay curious, stay informed — knowledge is your superpower.</p>
   </footer>
+
+  <script>
+    const quotes = [
+      "The only true wisdom is in knowing you know nothing. — Socrates",
+      "Education is the most powerful weapon which you can use to change the world. — Nelson Mandela",
+      "Injustice anywhere is a threat to justice everywhere. — Martin Luther King Jr.",
+      "Science is a way of thinking much more than it is a body of knowledge. — Carl Sagan",
+      "The future belongs to those who believe in the beauty of their dreams. — Eleanor Roosevelt",
+      "We must be the change we wish to see in the world. — Mahatma Gandhi",
+      "The advancement and diffusion of knowledge is the only guardian of true liberty. — James Madison"
+    ];
+    const today = new Date();
+    const index = today.getDate() % quotes.length;
+    document.getElementById("daily-quote").textContent = quotes[index];
+  </script>
 </body>
 </html>
