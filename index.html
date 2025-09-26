@@ -2,166 +2,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stone Knight's News Dashboard</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to right, #eef2f3, #8e9eab);
-      color: #333;
-    }
-    header {
-      padding: 20px;
-      text-align: center;
-      background-color: #444;
-      color: white;
-    }
-    .section {
-      padding: 20px;
-      margin: 10px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .section h2 {
-      margin-top: 0;
-    }
-    .link-list a {
-      display: block;
-      margin: 5px 0;
-      color: #0066cc;
-      text-decoration: none;
-    }
-    .link-list a:hover {
-      text-decoration: underline;
-    }
-    .quote, .greeting, .history {
-      font-style: italic;
-      margin-bottom: 10px;
-    }
-    .theme-toggle {
-      margin: 10px;
-      padding: 5px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Stone Knight's News Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+            color: #333;
+        }
+        header {
+            background-color: #334e68;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+        .greeting, .quote, .history {
+            text-align: center;
+            margin: 1em auto;
+            max-width: 800px;
+        }
+        .theme-toggle {
+            text-align: center;
+            margin: 1em;
+        }
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1em;
+            padding: 1em;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1em;
+            width: 300px;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.02);
+        }
+        footer {
+            text-align: center;
+            padding: 1em;
+            background-color: #334e68;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Stone Knight's Personalized News Dashboard</h1>
+
+<section class="featured-articles">
+  <h2>🌟 Featured Articles</h2>
+  <ul>
+    <li><strong>Canadian News:</strong> <a href="https://thenarwhal.ca" target="_blank">https://thenarwhal.ca</a></li>
+    <li><strong>Global News:</strong> <a href="https://www.reuters.com" target="_blank">https://www.reuters.com</a></li>
+    <li><strong>Science & Environment:</strong> <a href="https://www.scientificamerican.com" target="_blank">https://www.scientificamerican.com</a></li>
+    <li><strong>Educational Resources:</strong> <a href="https://evidencefordemocracy.ca" target="_blank">https://evidencefordemocracy.ca</a></li>
+    <li><strong>Fact-Checking:</strong> <a href="https://fullfact.org" target="_blank">https://fullfact.org</a></li>
+  </ul>
+</section>
+
+    <header>
+        <h1>Stone Knight's News Dashboard</h1>
+    </header>
     <div class="greeting" id="greeting"></div>
     <div class="quote" id="quote"></div>
     <div class="history" id="history"></div>
-    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
-  </header>
-
-  <div class="section">
-    <h2>Canadian News</h2>
-    <div class="link-list">
-      <a href="https://www.cbc.ca/news" target="_blank">CBC News</a>
-      <a href="https://thenarwhal.ca" target="_blank">The Narwhal</a>
-      <a href="https://thetyee.ca" target="_blank">The Tyee</a>
-      <a href="https://globalnews.ca" target="_blank">Global News</a>
-      <a href="https://www.ctvnews.ca" target="_blank">CTV News</a>
+    <div class="theme-toggle">
+        <button onclick="toggleTheme()">Toggle Theme</button>
     </div>
-  </div>
-
-  <div class="section">
-    <h2>Global News</h2>
-    <div class="link-list">
-      <a href="https://www.hrw.org" target="_blank">Human Rights Watch</a>
-      <a href="https://www.bbc.com/news" target="_blank">BBC News</a>
-      <a href="https://www.aljazeera.com" target="_blank">Al Jazeera</a>
-      <a href="https://www.reuters.com" target="_blank">Reuters</a>
-      <a href="https://www.nytimes.com" target="_blank">New York Times</a>
+    <div class="categories">
+        <div class="card"><h3>Canadian News</h3>
+            <ul>
+                <li><a href="https://www.cbc.ca/news" target="_blank">CBC</a></li>
+                <li><a href="https://thenarwhal.ca" target="_blank">The Narwhal</a></li>
+                <li><a href="https://thetyee.ca" target="_blank">The Tyee</a></li>
+                <li><a href="https://globalnews.ca" target="_blank">Global News</a></li>
+                <li><a href="https://www.ctvnews.ca" target="_blank">CTV News</a></li>
+            </ul>
+        </div>
+        <div class="card"><h3>Global News</h3>
+            <ul>
+                <li><a href="https://www.hrw.org" target="_blank">Human Rights Watch</a></li>
+                <li><a href="https://www.bbc.com/news" target="_blank">BBC</a></li>
+                <li><a href="https://www.aljazeera.com" target="_blank">Al Jazeera</a></li>
+                <li><a href="https://www.reuters.com" target="_blank">Reuters</a></li>
+                <li><a href="https://www.nytimes.com" target="_blank">New York Times</a></li>
+            </ul>
+        </div>
+        <div class="card"><h3>Science & Environment</h3>
+            <ul>
+                <li><a href="https://www.scientificamerican.com" target="_blank">Scientific American</a></li>
+                <li><a href="https://www.nature.com" target="_blank">Nature</a></li>
+                <li><a href="https://www.newscientist.com" target="_blank">New Scientist</a></li>
+                <li><a href="https://www.nationalgeographic.com" target="_blank">National Geographic</a></li>
+                <li><a href="https://www.theguardian.com/environment" target="_blank">The Guardian</a></li>
+            </ul>
+        </div>
+        <div class="card"><h3>Educational Resources</h3>
+            <ul>
+                <li><a href="https://humanrights.ca/education-resources/" target="_blank">CMHR</a></li>
+                <li><a href="https://evidencefordemocracy.ca" target="_blank">Evidence for Democracy</a></li>
+                <li><a href="https://theconversation.com/ca" target="_blank">The Conversation Canada</a></li>
+                <li><a href="https://www.samaracentre.ca" target="_blank">Samara Centre</a></li>
+                <li><a href="https://www.chrc-ccdp.gc.ca" target="_blank">CHRC</a></li>
+            </ul>
+        </div>
+        <div class="card"><h3>Fact-Checking</h3>
+            <ul>
+                <li><a href="https://www.snopes.com" target="_blank">Snopes</a></li>
+                <li><a href="https://factcheck.afp.com" target="_blank">AFP Fact Check</a></li>
+                <li><a href="https://www.politifact.com" target="_blank">PolitiFact</a></li>
+                <li><a href="https://www.reuters.com/fact-check/" target="_blank">Reuters Fact Check</a></li>
+                <li><a href="https://fullfact.org" target="_blank">Full Fact</a></li>
+            </ul>
+        </div>
     </div>
-  </div>
-
-  <div class="section">
-    <h2>Science & Environment</h2>
-    <div class="link-list">
-      <a href="https://www.scientificamerican.com" target="_blank">Scientific American</a>
-      <a href="https://www.nature.com" target="_blank">Nature</a>
-      <a href="https://www.newscientist.com" target="_blank">New Scientist</a>
-      <a href="https://www.nationalgeographic.com" target="_blank">National Geographic</a>
-      <a href="https://www.theguardian.com/environment" target="_blank">The Guardian - Environment</a>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Educational Resources</h2>
-    <div class="link-list">
-      <a href="https://humanrights.ca/education-resources/" target="_blank">CMHR Education</a>
-      <a href="https://evidencefordemocracy.ca" target="_blank">Evidence for Democracy</a>
-      <a href="https://theconversation.com/ca" target="_blank">The Conversation Canada</a>
-      <a href="https://www.samaracentre.ca" target="_blank">Samara Centre for Democracy</a>
-      <a href="https://www.chrc-ccdp.gc.ca/" target="_blank">Canadian Human Rights Commission</a>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Fact-Checking</h2>
-    <div class="link-list">
-      <a href="https://www.snopes.com" target="_blank">Snopes</a>
-      <a href="https://factcheck.afp.com" target="_blank">AFP Fact Check</a>
-      <a href="https://www.politifact.com" target="_blank">PolitiFact</a>
-      <a href="https://www.reuters.com/fact-check/" target="_blank">Reuters Fact Check</a>
-      <a href="https://fullfact.org" target="_blank">Full Fact</a>
-    </div>
-  </div>
-
-  <script>
-    // Greeting based on time
-    const hour = new Date().getHours();
-    const greeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
-    document.getElementById("greeting").textContent = greeting + ", Stone Knight!";
-
-    // Daily quote
-    const quotes = [
-      "Stay curious, stay informed — knowledge is your superpower.",
-      "The only true wisdom is in knowing you know nothing. – Socrates",
-      "Education is the most powerful weapon which you can use to change the world. – Nelson Mandela",
-      "Somewhere, something incredible is waiting to be known. – Carl Sagan",
-      "The future belongs to those who believe in the beauty of their dreams. – Eleanor Roosevelt",
-      "Be the change that you wish to see in the world. – Mahatma Gandhi",
-      "Injustice anywhere is a threat to justice everywhere. – Martin Luther King Jr.",
-      "Knowledge will forever govern ignorance. – James Madison"
-    ];
-    const quoteOfTheDay = quotes[new Date().getDate() % quotes.length];
-    document.getElementById("quote").textContent = quoteOfTheDay;
-
-    // On This Day in History
-    const historyEvents = {
-      "1-1": "1863 – The Emancipation Proclamation takes effect in the United States.",
-      "2-14": "1929 – The Saint Valentine's Day Massacre occurs in Chicago.",
-      "3-10": "1876 – Alexander Graham Bell makes the first successful telephone call.",
-      "4-12": "1961 – Yuri Gagarin becomes the first human in space.",
-      "5-5": "1961 – Alan Shepard becomes the first American in space.",
-      "6-6": "1944 – D-Day: Allied forces land on the beaches of Normandy, France.",
-      "7-20": "1969 – Apollo 11's Neil Armstrong and Buzz Aldrin land on the Moon.",
-      "8-15": "1947 – India gains independence from British rule.",
-      "9-1": "1939 – Germany invades Poland, starting World War II.",
-      "10-24": "1945 – The United Nations is officially established.",
-      "11-9": "1989 – The Berlin Wall falls.",
-      "12-25": "1991 – Mikhail Gorbachev resigns as President of the Soviet Union, ending the USSR."
-    };
-    const todayKey = `${new Date().getMonth() + 1}-${new Date().getDate()}`;
-    const historyText = historyEvents[todayKey] || "No major historical event recorded for this day.";
-    document.getElementById("history").textContent = "📅 On This Day in History: " + historyText;
-
-    // Theme toggle
-    function toggleTheme() {
-      const body = document.body;
-      if (body.style.background.includes("linear-gradient")) {
-        body.style.background = "#222";
-        body.style.color = "#eee";
-      } else {
-        body.style.background = "linear-gradient(to right, #eef2f3, #8e9eab)";
-        body.style.color = "#333";
-      }
-    }
-  </script>
+    <footer>
+        <p>Stay curious, stay informed — knowledge is your superpower.</p>
+    </footer>
+    <script>
+        const quotes = [
+            "The only true wisdom is in knowing you know nothing. – Socrates",
+            "Education is the most powerful weapon which you can use to change the world. – Nelson Mandela",
+            "Somewhere, something incredible is waiting to be known. – Carl Sagan",
+            "The future belongs to those who believe in the beauty of their dreams. – Eleanor Roosevelt",
+            "Be the change that you wish to see in the world. – Mahatma Gandhi",
+            "Injustice anywhere is a threat to justice everywhere. – Martin Luther King Jr.",
+            "Knowledge will forever govern ignorance. – James Madison"
+        ];
+        const historyEvents = {
+            "09-25": "1957 – Nine African-American students are escorted into Little Rock Central High School by U.S. Army troops, enforcing desegregation."
+        };
+        const today = new Date();
+        const hour = today.getHours();
+        const greeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
+        document.getElementById("greeting").innerText = `${greeting}, Stone Knight!`;
+        document.getElementById("quote").innerText = quotes[today.getDate() % quotes.length];
+        const key = today.toISOString().slice(5, 10);
+        document.getElementById("history").innerHTML = `<strong>📅 On This Day in History (${key})</strong><br>${historyEvents[key] || "No historical event found for today."}`;
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+        }
+    </script>
 </body>
 </html>
