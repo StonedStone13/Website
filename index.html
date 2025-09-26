@@ -4,79 +4,114 @@
 <head>
     <meta charset="UTF-8">
     <title>Stone Knight's News Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to right, #f0f4f8, #d9e2ec);
-            color: #333;
+        :root {
+            --bg-focused: #f4f4f4;
+            --bg-relaxed: #e0f7fa;
+            --bg-curious: #fff8e1;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --accent-color: #0077cc;
         }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-focused);
+            color: var(--text-color);
+            transition: background-color 0.5s ease;
+        }
+
         header {
-            background-color: #334e68;
-            color: white;
             padding: 1em;
             text-align: center;
+            background-color: var(--accent-color);
+            color: white;
         }
-        .greeting, .quote, .history {
-            text-align: center;
-            margin: 1em auto;
-            max-width: 800px;
-        }
-        .theme-toggle {
-            text-align: center;
-            margin: 1em;
-        }
-        .categories {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1em;
             padding: 1em;
         }
+
         .card {
-            background: white;
+            background-color: var(--card-bg);
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             padding: 1em;
-            width: 300px;
-            transition: transform 0.2s;
+            transition: transform 0.3s ease;
         }
+
         .card:hover {
             transform: scale(1.02);
         }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .quote, .greeting, .history, .featured {
+            text-align: center;
+            margin: 1em 0;
+        }
+
+        .theme-toggle, .mood-select {
+            margin: 1em auto;
+            text-align: center;
+        }
+
+        select, button {
+            padding: 0.5em;
+            font-size: 1em;
+        }
+
         footer {
             text-align: center;
             padding: 1em;
-            background-color: #334e68;
+            background-color: var(--accent-color);
             color: white;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-
-<section class="featured-articles">
-  <h2>🌟 Featured Articles</h2>
-  <ul>
-    <li><strong>Canadian News:</strong> <a href="https://thenarwhal.ca" target="_blank">https://thenarwhal.ca</a></li>
-    <li><strong>Global News:</strong> <a href="https://www.reuters.com" target="_blank">https://www.reuters.com</a></li>
-    <li><strong>Science & Environment:</strong> <a href="https://www.scientificamerican.com" target="_blank">https://www.scientificamerican.com</a></li>
-    <li><strong>Educational Resources:</strong> <a href="https://evidencefordemocracy.ca" target="_blank">https://evidencefordemocracy.ca</a></li>
-    <li><strong>Fact-Checking:</strong> <a href="https://fullfact.org" target="_blank">https://fullfact.org</a></li>
-  </ul>
-</section>
-
     <header>
-        <h1>Stone Knight's News Dashboard</h1>
+        <h1>Stone Knight's Personalized News Dashboard</h1>
     </header>
+
     <div class="greeting" id="greeting"></div>
     <div class="quote" id="quote"></div>
     <div class="history" id="history"></div>
+
     <div class="theme-toggle">
-        <button onclick="toggleTheme()">Toggle Theme</button>
+        <button onclick="toggleTheme()">Toggle Light/Dark Theme</button>
     </div>
-    <div class="categories">
-        <div class="card"><h3>Canadian News</h3>
+
+    <div class="mood-select">
+        <label for="mood">Select Mood Theme:</label>
+        <select id="mood" onchange="changeMood(this.value)">
+            <option value="focused">Focused</option>
+            <option value="relaxed">Relaxed</option>
+            <option value="curious">Curious</option>
+        </select>
+    </div>
+
+    <div class="featured" id="featured"></div>
+
+    <div class="container">
+        <div class="card">
+            <h2>Canadian News</h2>
             <ul>
                 <li><a href="https://www.cbc.ca/news" target="_blank">CBC</a></li>
                 <li><a href="https://thenarwhal.ca" target="_blank">The Narwhal</a></li>
@@ -85,7 +120,8 @@
                 <li><a href="https://www.ctvnews.ca" target="_blank">CTV News</a></li>
             </ul>
         </div>
-        <div class="card"><h3>Global News</h3>
+        <div class="card">
+            <h2>Global News</h2>
             <ul>
                 <li><a href="https://www.hrw.org" target="_blank">Human Rights Watch</a></li>
                 <li><a href="https://www.bbc.com/news" target="_blank">BBC</a></li>
@@ -94,7 +130,8 @@
                 <li><a href="https://www.nytimes.com" target="_blank">New York Times</a></li>
             </ul>
         </div>
-        <div class="card"><h3>Science & Environment</h3>
+        <div class="card">
+            <h2>Science & Environment</h2>
             <ul>
                 <li><a href="https://www.scientificamerican.com" target="_blank">Scientific American</a></li>
                 <li><a href="https://www.nature.com" target="_blank">Nature</a></li>
@@ -103,16 +140,18 @@
                 <li><a href="https://www.theguardian.com/environment" target="_blank">The Guardian</a></li>
             </ul>
         </div>
-        <div class="card"><h3>Educational Resources</h3>
+        <div class="card">
+            <h2>Educational Resources</h2>
             <ul>
                 <li><a href="https://humanrights.ca/education-resources/" target="_blank">CMHR</a></li>
                 <li><a href="https://evidencefordemocracy.ca" target="_blank">Evidence for Democracy</a></li>
                 <li><a href="https://theconversation.com/ca" target="_blank">The Conversation Canada</a></li>
                 <li><a href="https://www.samaracentre.ca" target="_blank">Samara Centre</a></li>
-                <li><a href="https://www.chrc-ccdp.gc.ca" target="_blank">CHRC</a></li>
+                <li><a href="https://www.chrc-ccdp.gc.ca/" target="_blank">CHRC</a></li>
             </ul>
         </div>
-        <div class="card"><h3>Fact-Checking</h3>
+        <div class="card">
+            <h2>Fact-Checking</h2>
             <ul>
                 <li><a href="https://www.snopes.com" target="_blank">Snopes</a></li>
                 <li><a href="https://factcheck.afp.com" target="_blank">AFP Fact Check</a></li>
@@ -122,9 +161,11 @@
             </ul>
         </div>
     </div>
+
     <footer>
         <p>Stay curious, stay informed — knowledge is your superpower.</p>
     </footer>
+
     <script>
         const quotes = [
             "The only true wisdom is in knowing you know nothing. – Socrates",
@@ -135,19 +176,81 @@
             "Injustice anywhere is a threat to justice everywhere. – Martin Luther King Jr.",
             "Knowledge will forever govern ignorance. – James Madison"
         ];
+
         const historyEvents = {
-            "09-25": "1957 – Nine African-American students are escorted into Little Rock Central High School by U.S. Army troops, enforcing desegregation."
+            "09-25": "1957 – Nine African-American students are escorted into Little Rock Central High School by U.S. Army troops, enforcing desegregation.",
+            "10-24": "1945 – The United Nations is officially established.",
+            "07-20": "1969 – Apollo 11 lands on the Moon and Neil Armstrong walks on its surface.",
+            "12-10": "1948 – The Universal Declaration of Human Rights is adopted by the United Nations."
         };
-        const today = new Date();
-        const hour = today.getHours();
-        const greeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
-        document.getElementById("greeting").innerText = `${greeting}, Stone Knight!`;
-        document.getElementById("quote").innerText = quotes[today.getDate() % quotes.length];
-        const key = today.toISOString().slice(5, 10);
-        document.getElementById("history").innerHTML = `<strong>📅 On This Day in History (${key})</strong><br>${historyEvents[key] || "No historical event found for today."}`;
-        function toggleTheme() {
-            document.body.classList.toggle("dark");
+
+        const featuredArticles = {
+            "Canadian News": "https://www.cbc.ca/news",
+            "Global News": "https://www.bbc.com/news",
+            "Science & Environment": "https://www.scientificamerican.com",
+            "Educational Resources": "https://theconversation.com/ca",
+            "Fact-Checking": "https://www.snopes.com"
+        };
+
+        function setGreeting() {
+            const hour = new Date().getHours();
+            let greeting = "Hello";
+            if (hour < 12) greeting = "Good morning";
+            else if (hour < 18) greeting = "Good afternoon";
+            else greeting = "Good evening";
+            document.getElementById("greeting").innerText = `${greeting}, Stone Knight!`;
         }
+
+        function setQuote() {
+            const index = new Date().getDate() % quotes.length;
+            document.getElementById("quote").innerText = `💬 ${quotes[index]}`;
+        }
+
+        function setHistory() {
+            const today = new Date();
+            const key = `${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+            const event = historyEvents[key] || "No historical event found for today.";
+            document.getElementById("history").innerText = `📅 On This Day in History (${key})
+${event}`;
+        }
+
+        function setFeatured() {
+            let html = "<h2>⭐ Featured Articles</h2><ul>";
+            for (const [category, url] of Object.entries(featuredArticles)) {
+                html += `<li><strong>${category}:</strong> <a href="${url}" target="_blank">${url}</a></li>`;
+            }
+            html += "</ul>";
+            document.getElementById("featured").innerHTML = html;
+        }
+
+        function toggleTheme() {
+            const current = document.body.style.backgroundColor;
+            if (current === "black") {
+                document.body.style.backgroundColor = getMoodColor(document.getElementById("mood").value);
+                document.body.style.color = "#333";
+            } else {
+                document.body.style.backgroundColor = "black";
+                document.body.style.color = "white";
+            }
+        }
+
+        function getMoodColor(mood) {
+            switch(mood) {
+                case "focused": return getComputedStyle(document.documentElement).getPropertyValue('--bg-focused');
+                case "relaxed": return getComputedStyle(document.documentElement).getPropertyValue('--bg-relaxed');
+                case "curious": return getComputedStyle(document.documentElement).getPropertyValue('--bg-curious');
+                default: return "#f4f4f4";
+            }
+        }
+
+        function changeMood(mood) {
+            document.body.style.backgroundColor = getMoodColor(mood);
+        }
+
+        setGreeting();
+        setQuote();
+        setHistory();
+        setFeatured();
     </script>
 </body>
 </html>
