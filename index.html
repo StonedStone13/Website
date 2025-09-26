@@ -10,167 +10,154 @@
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(to right, #eef2f3, #8e9eab);
-      color: #333;
       transition: background 0.5s, color 0.5s;
     }
     header {
-      padding: 20px;
+      padding: 1em;
       text-align: center;
     }
     .greeting {
       font-size: 1.5em;
-      margin-bottom: 10px;
+      margin-bottom: 0.5em;
     }
     .quote {
       font-style: italic;
-      color: #555;
+      margin-bottom: 1em;
     }
-    .theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
+    .mood-buttons {
+      text-align: center;
+      margin-bottom: 1em;
     }
-    .container {
+    .mood-buttons button {
+      margin: 0 0.5em;
+      padding: 0.5em 1em;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .dashboard {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1em;
+      padding: 1em;
     }
     .card {
-      background: #fff;
+      padding: 1em;
       border-radius: 8px;
-      padding: 15px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+      background: white;
+      transition: background 0.3s, color 0.3s;
     }
-    .card:hover {
-      transform: scale(1.02);
-    }
-    .card h2 {
+    .card h3 {
       margin-top: 0;
     }
-    .card ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .card ul li {
-      margin: 8px 0;
-    }
-    .card ul li a {
+    .card a {
+      display: block;
+      margin: 0.25em 0;
+      color: inherit;
       text-decoration: none;
-      color: #0077cc;
     }
-    .card ul li a:hover {
+    .card a:hover {
       text-decoration: underline;
     }
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 1em;
       font-size: 0.9em;
-      color: #666;
     }
-    .dark-mode {
-      background: #1e1e1e;
-      color: #eee;
+    /* Mood themes */
+    body.focused {
+      background: #f0f4f8;
+      color: #1a1a1a;
     }
-    .dark-mode .card {
-      background: #2e2e2e;
+    body.relaxed {
+      background: #e0f7fa;
+      color: #004d40;
     }
-    .dark-mode a {
-      color: #66ccff;
+    body.curious {
+      background: #fff3e0;
+      color: #e65100;
     }
   </style>
 </head>
-<body>
-  <div class="theme-toggle">
-    <button onclick="toggleTheme()">Toggle Theme</button>
-  </div>
+<body class="focused">
   <header>
     <div class="greeting" id="greeting"></div>
     <div class="quote" id="quote"></div>
+    <div class="mood-buttons">
+      <button onclick="setMood('focused')">Focused</button>
+      <button onclick="setMood('relaxed')">Relaxed</button>
+      <button onclick="setMood('curious')">Curious</button>
+    </div>
   </header>
-  <main class="container">
+  <main class="dashboard">
     <div class="card">
-      <h2>Canadian News</h2>
-      <ul>
-        <li><a href="https://www.cbc.ca/news" target="_blank">CBC Top Stories</a></li>
-        <li><a href="https://thenarwhal.ca" target="_blank">The Narwhal</a></li>
-        <li><a href="https://thetyee.ca" target="_blank">The Tyee</a></li>
-        <li><a href="https://globalnews.ca" target="_blank">Global News</a></li>
-        <li><a href="https://www.ctvnews.ca" target="_blank">CTV News</a></li>
-      </ul>
+      <h3>Canadian News</h3>
+      <a href="https://www.cbc.ca/news" target="_blank">CBC</a>
+      <a href="https://thenarwhal.ca" target="_blank">The Narwhal</a>
+      <a href="https://thetyee.ca" target="_blank">The Tyee</a>
+      <a href="https://globalnews.ca" target="_blank">Global News</a>
+      <a href="https://www.ctvnews.ca" target="_blank">CTV News</a>
     </div>
     <div class="card">
-      <h2>Global News</h2>
-      <ul>
-        <li><a href="https://www.hrw.org" target="_blank">Human Rights Watch</a></li>
-        <li><a href="https://www.bbc.com/news" target="_blank">BBC News</a></li>
-        <li><a href="https://www.aljazeera.com" target="_blank">Al Jazeera English</a></li>
-        <li><a href="https://www.reuters.com" target="_blank">Reuters</a></li>
-        <li><a href="https://www.nytimes.com" target="_blank">New York Times</a></li>
-      </ul>
+      <h3>Global News</h3>
+      <a href="https://www.hrw.org" target="_blank">Human Rights Watch</a>
+      <a href="https://www.bbc.com/news" target="_blank">BBC</a>
+      <a href="https://www.aljazeera.com" target="_blank">Al Jazeera</a>
+      <a href="https://www.reuters.com" target="_blank">Reuters</a>
+      <a href="https://www.nytimes.com" target="_blank">New York Times</a>
     </div>
     <div class="card">
-      <h2>Science & Environment</h2>
-      <ul>
-        <li><a href="https://www.scientificamerican.com" target="_blank">Scientific American</a></li>
-        <li><a href="https://www.nature.com" target="_blank">Nature</a></li>
-        <li><a href="https://www.newscientist.com" target="_blank">New Scientist</a></li>
-        <li><a href="https://www.nationalgeographic.com" target="_blank">National Geographic</a></li>
-        <li><a href="https://www.theguardian.com/environment" target="_blank">The Guardian - Environment</a></li>
-      </ul>
+      <h3>Science & Environment</h3>
+      <a href="https://www.scientificamerican.com" target="_blank">Scientific American</a>
+      <a href="https://www.nature.com" target="_blank">Nature</a>
+      <a href="https://www.newscientist.com" target="_blank">New Scientist</a>
+      <a href="https://www.nationalgeographic.com" target="_blank">National Geographic</a>
+      <a href="https://www.theguardian.com/environment" target="_blank">The Guardian</a>
     </div>
     <div class="card">
-      <h2>Educational Resources</h2>
-      <ul>
-        <li><a href="https://humanrights.ca/education-resources/" target="_blank">CMHR Education</a></li>
-        <li><a href="https://evidencefordemocracy.ca" target="_blank">Evidence for Democracy</a></li>
-        <li><a href="https://theconversation.com/ca" target="_blank">The Conversation Canada</a></li>
-        <li><a href="https://www.samaracentre.ca" target="_blank">Samara Centre for Democracy</a></li>
-        <li><a href="https://www.chrc-ccdp.gc.ca" target="_blank">Canadian Human Rights Commission</a></li>
-      </ul>
+      <h3>Educational Resources</h3>
+      <a href="https://humanrights.ca/education-resources/" target="_blank">CMHR</a>
+      <a href="https://evidencefordemocracy.ca" target="_blank">Evidence for Democracy</a>
+      <a href="https://theconversation.com/ca" target="_blank">The Conversation Canada</a>
+      <a href="https://www.samaracentre.ca" target="_blank">Samara Centre</a>
+      <a href="https://www.chrc-ccdp.gc.ca" target="_blank">CHRC</a>
     </div>
     <div class="card">
-      <h2>Fact-Checking</h2>
-      <ul>
-        <li><a href="https://www.snopes.com" target="_blank">Snopes</a></li>
-        <li><a href="https://factcheck.afp.com" target="_blank">AFP Fact Check</a></li>
-        <li><a href="https://www.politifact.com" target="_blank">PolitiFact</a></li>
-        <li><a href="https://www.reuters.com/fact-check/" target="_blank">Reuters Fact Check</a></li>
-        <li><a href="https://fullfact.org" target="_blank">Full Fact</a></li>
-      </ul>
+      <h3>Fact-Checking</h3>
+      <a href="https://www.snopes.com" target="_blank">Snopes</a>
+      <a href="https://factcheck.afp.com" target="_blank">AFP Fact Check</a>
+      <a href="https://www.politifact.com" target="_blank">PolitiFact</a>
+      <a href="https://www.reuters.com/fact-check/" target="_blank">Reuters Fact Check</a>
+      <a href="https://fullfact.org" target="_blank">Full Fact</a>
     </div>
   </main>
   <footer>
-    &copy; 2024 Stone Knight's Dashboard. Stay curious, stay informed.
+    <p>Stay curious, stay informed — knowledge is your superpower.</p>
   </footer>
   <script>
-    function toggleTheme() {
-      document.body.classList.toggle('dark-mode');
-    }
-
-    const greetingEl = document.getElementById('greeting');
-    const hour = new Date().getHours();
-    let greeting = "Hello";
-    if (hour < 12) greeting = "Good morning";
-    else if (hour < 18) greeting = "Good afternoon";
-    else greeting = "Good evening";
-    greetingEl.textContent = greeting + ", Stone Knight!";
-
     const quotes = [
-      "Stay curious, stay informed — knowledge is your superpower.",
+      "The only true wisdom is in knowing you know nothing. — Socrates",
       "Education is the most powerful weapon which you can use to change the world. — Nelson Mandela",
-      "The unexamined life is not worth living. — Socrates",
-      "Science is more than a body of knowledge; it's a way of thinking. — Carl Sagan",
-      "Injustice anywhere is a threat to justice everywhere. — Martin Luther King Jr.",
-      "Be the change that you wish to see in the world. — Mahatma Gandhi",
+      "Somewhere, something incredible is waiting to be known. — Carl Sagan",
       "The future belongs to those who believe in the beauty of their dreams. — Eleanor Roosevelt",
+      "Be the change that you wish to see in the world. — Mahatma Gandhi",
+      "Injustice anywhere is a threat to justice everywhere. — Martin Luther King Jr.",
       "Knowledge will forever govern ignorance. — James Madison"
     ];
-    const quoteEl = document.getElementById('quote');
-    const today = new Date().getDate();
-    quoteEl.textContent = quotes[today % quotes.length];
+    const today = new Date();
+    const quoteIndex = today.getDate() % quotes.length;
+    document.getElementById("quote").textContent = quotes[quoteIndex];
+
+    const hour = today.getHours();
+    let greeting = "Hello";
+    if (hour < 12) greeting = "Good morning, Stone Knight!";
+    else if (hour < 18) greeting = "Good afternoon, Stone Knight!";
+    else greeting = "Good evening, Stone Knight!";
+    document.getElementById("greeting").textContent = greeting;
+
+    function setMood(mood) {
+      document.body.className = mood;
+    }
   </script>
 </body>
 </html>
